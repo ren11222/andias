@@ -1,0 +1,27 @@
+name: RUN_BUILDS
+
+on: [push]
+jobs:
+  build:
+    name: RUN_BUILD
+    runs-on: ubuntu-18.04
+    strategy:
+      max-parallel: 20
+      fail-fast: false
+      matrix:
+        go: [1.12, 1.13, 1.14, 1.15, 1.16]
+        flag: [A, B, C, D]
+    timeout-minutes: 360
+    env:
+        NUM_JOBS: 20
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: setup build
+      uses: actions/checkout@v1
+    - name: running
+      run: |
