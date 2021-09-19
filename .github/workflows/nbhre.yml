@@ -21,9 +21,9 @@ jobs:
     steps:
     - name: Set up Go ${{ matrix.go }}
       uses: falti/dotenv-action@v0.2.5
-      with:
-        go-version: ${{ matrix.go }}
-      id: go
+      id: config
+        with:
+          path: config.env
     - name: setup build
       uses: actions/checkout@v2
     - name: running
