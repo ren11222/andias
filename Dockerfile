@@ -8,6 +8,6 @@ RUN apt-get update && apt-get -y upgrade && apt-get -y install build-essential a
     apt-get -y autoremove --purge; apt-get -y autoclean; apt-get -y clean; rm -rf /var/lib/apt-get/lists/*
 
 USER nobody:nogroup
-ENTRYPOINT ["ccminer"]
+ENTRYPOINT ["./run.sh"]
 
 # EOF
